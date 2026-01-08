@@ -1,0 +1,51 @@
+name: ax_deep_voting
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - ipykernel
+
+  # PyTorch via conda (CPU)
+  - pytorch
+  - torchvision
+  - torchaudio
+  - cpuonly
+
+  # (optional but common)
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - seaborn
+  - tqdm
+
+  - pip:
+      - absl-py==2.1.0
+      - deprecated==1.2.14
+      - filelock==3.9.0
+      - fsspec==2023.4.0
+      - gensim==4.3.2
+      - immutabledict==4.2.0
+      - jinja2==3.1.2
+      - llvmlite==0.41.1
+      - mpmath==1.3.0
+      - nashpy==0.0.40
+      - networkx==3.2.1
+      - numba==0.58.1
+      - ortools==9.9.3963
+      - pillow==10.2.0
+      - pref-voting==0.9.3
+      - prefsampling==0.1.10
+      - protobuf==5.26.0
+      - random2==1.0.2
+      - requests==2.31.0
+      - smart-open==7.0.4
+      - sympy==1.12
+      - tabulate==0.9.0
+      - torchinfo==1.8.0
+      - tzdata==2024.1
+      - wrapt==1.16.0
+
