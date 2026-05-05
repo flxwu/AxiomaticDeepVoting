@@ -1,0 +1,112 @@
+Saving results to /Users/felixwu/code/AxiomaticDeepVoting/WP1/results_table3_2026-05-02_19-00-59
+Generating 100000 IC-Plurality profiles...
+So far 0 of the desired 100000 rows have been generated
+So far 10000 of the desired 100000 rows have been generated
+So far 20000 of the desired 100000 rows have been generated
+So far 30000 of the desired 100000 rows have been generated
+So far 40000 of the desired 100000 rows have been generated
+So far 50000 of the desired 100000 rows have been generated
+So far 60000 of the desired 100000 rows have been generated
+So far 70000 of the desired 100000 rows have been generated
+So far 80000 of the desired 100000 rows have been generated
+So far 90000 of the desired 100000 rows have been generated
+Done; 100000 rows have been generated
+  done in 27.3s
+Pretraining Word2Vec embeddings for WEC...
+  done in 5.2s
+
+=== MLP ===
+  fold 0: train_loss=0.0119, train_acc=0.9791, test_loss=0.0268, test_acc=0.9563 (53s)
+  fold 1: train_loss=0.0105, train_acc=0.9813, test_loss=0.0260, test_acc=0.9585 (52s)
+  fold 2: train_loss=0.0080, train_acc=0.9864, test_loss=0.0262, test_acc=0.9584 (53s)
+  fold 3: train_loss=0.0082, train_acc=0.9858, test_loss=0.0254, test_acc=0.9600 (53s)
+  fold 4: train_loss=0.0080, train_acc=0.9863, test_loss=0.0218, test_acc=0.9621 (54s)
+  fold 5: train_loss=0.0127, train_acc=0.9786, test_loss=0.0300, test_acc=0.9547 (52s)
+  fold 6: train_loss=0.0095, train_acc=0.9835, test_loss=0.0256, test_acc=0.9613 (52s)
+  fold 7: train_loss=0.0070, train_acc=0.9881, test_loss=0.0213, test_acc=0.9674 (51s)
+  fold 8: train_loss=0.0063, train_acc=0.9894, test_loss=0.0234, test_acc=0.9614 (50s)
+  fold 9: train_loss=0.0100, train_acc=0.9827, test_loss=0.0273, test_acc=0.9589 (52s)
+
+=== CNN ===
+  fold 0: train_loss=0.0072, train_acc=0.9877, test_loss=0.0089, test_acc=0.9859 (227s)
+  fold 1: train_loss=0.0098, train_acc=0.9828, test_loss=0.0126, test_acc=0.9768 (223s)
+  fold 2: train_loss=0.0207, train_acc=0.9585, test_loss=0.0240, test_acc=0.9537 (221s)
+  fold 3: train_loss=0.0133, train_acc=0.9777, test_loss=0.0153, test_acc=0.9732 (226s)
+  fold 4: train_loss=0.0151, train_acc=0.9722, test_loss=0.0190, test_acc=0.9656 (223s)
+  fold 5: train_loss=0.0222, train_acc=0.9565, test_loss=0.0241, test_acc=0.9549 (225s)
+  fold 6: train_loss=0.0083, train_acc=0.9860, test_loss=0.0112, test_acc=0.9812 (223s)
+  fold 7: train_loss=0.0255, train_acc=0.9542, test_loss=0.0293, test_acc=0.9487 (224s)
+  fold 8: train_loss=0.0045, train_acc=0.9937, test_loss=0.0072, test_acc=0.9887 (226s)
+  fold 9: train_loss=0.0107, train_acc=0.9802, test_loss=0.0134, test_acc=0.9768 (226s)
+
+=== WEC ===
+  fold 0: train_loss=0.0027, train_acc=0.9985, test_loss=0.0027, test_acc=0.9983 (13s)
+  fold 1: train_loss=0.0005, train_acc=0.9998, test_loss=0.0005, test_acc=1.0000 (12s)
+  fold 2: train_loss=0.0002, train_acc=1.0000, test_loss=0.0002, test_acc=1.0000 (12s)
+  fold 3: train_loss=0.0001, train_acc=1.0000, test_loss=0.0001, test_acc=1.0000 (12s)
+  fold 4: train_loss=0.0006, train_acc=0.9994, test_loss=0.0008, test_acc=0.9992 (12s)
+  fold 5: train_loss=0.0000, train_acc=1.0000, test_loss=0.0000, test_acc=1.0000 (13s)
+  fold 6: train_loss=0.0001, train_acc=1.0000, test_loss=0.0001, test_acc=0.9999 (13s)
+  fold 7: train_loss=0.0000, train_acc=1.0000, test_loss=0.0001, test_acc=0.9999 (13s)
+  fold 8: train_loss=0.0000, train_acc=1.0000, test_loss=0.0000, test_acc=1.0000 (13s)
+  fold 9: train_loss=0.0000, train_acc=1.0000, test_loss=0.0001, test_acc=0.9999 (13s)
+
+=== Table 3 ===
+MLP
+\begin{tabular}{lcccc}
+\hline
+ Testing fold number   &  Train loss  &  Train accuracy (in %)  &  Test loss  &  Test accuracy (in %)  \\
+\hline
+ 0                     &    0.012     &          97.9           &    0.027    &          95.6          \\
+ 1                     &    0.011     &          98.1           &    0.026    &          95.9          \\
+ 2                     &    0.008     &          98.6           &    0.026    &          95.8          \\
+ 3                     &    0.008     &          98.6           &    0.025    &           96           \\
+ 4                     &    0.008     &          98.6           &    0.022    &          96.2          \\
+ 5                     &    0.013     &          97.9           &    0.03     &          95.5          \\
+ 6                     &     0.01     &          98.4           &    0.026    &          96.1          \\
+ 7                     &    0.007     &          98.8           &    0.021    &          96.7          \\
+ 8                     &    0.006     &          98.9           &    0.023    &          96.1          \\
+ 9                     &     0.01     &          98.3           &    0.027    &          95.9          \\
+ Avg.                  &    0.009     &          98.4           &    0.025    &           96           \\
+ Std. dev.             &    0.002     &           0.4           &    0.002    &          0.3           \\
+\hline
+\end{tabular}
+CNN
+\begin{tabular}{lcccc}
+\hline
+ Testing fold number   &  Train loss  &  Train accuracy (in %)  &  Test loss  &  Test accuracy (in %)  \\
+\hline
+ 0                     &    0.007     &          98.8           &    0.009    &          98.6          \\
+ 1                     &     0.01     &          98.3           &    0.013    &          97.7          \\
+ 2                     &    0.021     &          95.8           &    0.024    &          95.4          \\
+ 3                     &    0.013     &          97.8           &    0.015    &          97.3          \\
+ 4                     &    0.015     &          97.2           &    0.019    &          96.6          \\
+ 5                     &    0.022     &          95.7           &    0.024    &          95.5          \\
+ 6                     &    0.008     &          98.6           &    0.011    &          98.1          \\
+ 7                     &    0.025     &          95.4           &    0.029    &          94.9          \\
+ 8                     &    0.004     &          99.4           &    0.007    &          98.9          \\
+ 9                     &    0.011     &           98            &    0.013    &          97.7          \\
+ Avg.                  &    0.014     &          97.5           &    0.016    &          97.1          \\
+ Std. dev.             &    0.007     &           1.3           &    0.007    &          1.3           \\
+\hline
+\end{tabular}
+WEC
+\begin{tabular}{lcccc}
+\hline
+ Testing fold number   &  Train loss  &  Train accuracy (in %)  &  Test loss  &  Test accuracy (in %)  \\
+\hline
+ 0                     &    0.003     &          99.8           &    0.003    &          99.8          \\
+ 1                     &      0       &           100           &    0.001    &          100           \\
+ 2                     &      0       &           100           &      0      &          100           \\
+ 3                     &      0       &           100           &      0      &          100           \\
+ 4                     &    0.001     &          99.9           &    0.001    &          99.9          \\
+ 5                     &      0       &           100           &      0      &          100           \\
+ 6                     &      0       &           100           &      0      &          100           \\
+ 7                     &      0       &           100           &      0      &          100           \\
+ 8                     &      0       &           100           &      0      &          100           \\
+ 9                     &      0       &           100           &      0      &          100           \\
+ Avg.                  &      0       &           100           &      0      &          100           \\
+ Std. dev.             &    0.001     &            0            &    0.001    &          0.1           \\
+\hline
+\end{tabular}
+

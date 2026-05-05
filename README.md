@@ -13,7 +13,8 @@ This repository contains the code for the paper
 
 ## Setup
 
-The required environments to run the Python code are described in the file `ax_deep_voting.yml`. To create the folder (with subfolders) to store the results when running the experiments, execute the following command (on linux)
+Run `conda env create -f environment.portable.yml`
+To create the folder (with subfolders) to store the results when running the experiments, execute the following command (on linux)
 
 ```
 mkdir -p results/{exp1/{CNN,Evol,Fixed,MLP,MLP_large,MLP_small,plots,WEC},exp2/{CNN,MLP,plots,WEC},exp3/{CNN,MLP,plots,WEC}}

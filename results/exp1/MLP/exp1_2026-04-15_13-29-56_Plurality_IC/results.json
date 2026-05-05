@@ -1,0 +1,131 @@
+{
+  "location": "./results/exp1/MLP/exp1_2026-04-15_13-29-56_Plurality_IC",
+  "architecture": "MLP",
+  "rule_names": ["Plurality"],
+  "max_num_voters": 10,
+  "max_num_alternatives": 3,
+  "election_sampling": { "probmodel": "IC" },
+  "num_gradient_steps": 200,
+  "eval_dataset_size": 500,
+  "sample_size_applicable": 100,
+  "sample_size_maximal": 1000000,
+  "architecture_parameters": null,
+  "axioms_check_model": [
+    "Anonymity",
+    "Weak anonymity",
+    "Neutrality",
+    "Weak neutrality",
+    "Condorcet",
+    "Pareto",
+    "Independence"
+  ],
+  "axioms_check_rule": ["Condorcet", "Independence"],
+  "max_num_voters_generation": 10,
+  "max_num_alternatives_generation": 3,
+  "merge": "accumulative",
+  "comparison_rules": ["Plurality", "Borda", "Copeland"],
+  "compute_resoluteness": false,
+  "random_seed": null,
+  "report_intervals": { "plot": 100, "print": 1000 },
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "learning_scheduler": null,
+  "weight_decay": 0,
+  "save_model": false,
+  "learning curve": {
+    "0": { "dev_loss": 0.68131023645401, "dev_accuracy": 0.58 },
+    "100": { "dev_loss": 0.07123100757598877, "dev_accuracy": 0.938 }
+  },
+  "test_accuracy": { "accuracy_on_test_data": 0.994 },
+  "number_of_model_parameters": 28547,
+  "admissability": {
+    "no_winner_at_all": 0.0,
+    "no_admissible_winner": 0.0,
+    "all_admissible_winner": 0.388,
+    "some_inadmissible_winner": 0.0
+  },
+  "axiom_satisfaction": {
+    "learned_rule": {
+      "Anonymity": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 0.95,
+        "absolute_satisfaction": 0.95,
+        "percent_applicable": 1.0
+      },
+      "Weak anonymity": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 1.0,
+        "absolute_satisfaction": 1.0,
+        "percent_applicable": 1.0
+      },
+      "Neutrality": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 0.96,
+        "absolute_satisfaction": 0.96,
+        "percent_applicable": 1.0
+      },
+      "Weak neutrality": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 1.0,
+        "absolute_satisfaction": 1.0,
+        "percent_applicable": 1.0
+      },
+      "Condorcet": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 0.98,
+        "absolute_satisfaction": 0.9821428571428571,
+        "percent_applicable": 0.8928571428571429
+      },
+      "Pareto": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 1.0,
+        "absolute_satisfaction": 1.0,
+        "percent_applicable": 0.15847860538827258
+      },
+      "Independence": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 0.69,
+        "absolute_satisfaction": 0.8197674418604651,
+        "percent_applicable": 0.5813953488372093
+      }
+    },
+    "Plurality": {
+      "Condorcet": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 0.97,
+        "absolute_satisfaction": 0.9743589743589743,
+        "percent_applicable": 0.8547008547008547
+      },
+      "Independence": {
+        "sampling_as_desired": "Yes (100/100)",
+        "cond_satisfaction": 0.66,
+        "absolute_satisfaction": 0.7988165680473372,
+        "percent_applicable": 0.591715976331361
+      }
+    }
+  },
+  "rule_comparison": {
+    "Plurality": {
+      "hamming": 0.0026666666666666666,
+      "identity_accu": 0.994,
+      "overlap_accu": 1.0,
+      "subset_accu": 0.996,
+      "superset_accu": 0.998
+    },
+    "Borda": {
+      "hamming": 0.04466666666666664,
+      "identity_accu": 0.892,
+      "overlap_accu": 0.988,
+      "subset_accu": 0.936,
+      "superset_accu": 0.944
+    },
+    "Copeland": {
+      "hamming": 0.04266666666666666,
+      "identity_accu": 0.898,
+      "overlap_accu": 0.992,
+      "subset_accu": 0.948,
+      "superset_accu": 0.942
+    }
+  },
+  "runtime_in_sec": 12.806412696838379
+}
