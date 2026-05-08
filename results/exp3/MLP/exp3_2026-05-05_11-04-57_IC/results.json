@@ -1,0 +1,338 @@
+{
+    "location": "./results/exp3/MLP/exp3_2026-05-05_11-04-57_IC",
+    "architecture": "MLP",
+    "max_num_voters": 55,
+    "max_num_alternatives": 5,
+    "election_sampling": {
+        "probmodel": "IC"
+    },
+    "num_gradient_steps": 15000,
+    "report_intervals": 15000,
+    "eval_dataset_size": 500,
+    "model_to_rule": {
+        "plain": true,
+        "neut-averaged": null,
+        "neut-anon-averaged": [
+            12,
+            10
+        ]
+    },
+    "sample_size_applicable": 400,
+    "sample_size_maximal": 1000000,
+    "architecture_parameters": null,
+    "axioms_check_model_interim": [
+        "Anonymity",
+        "Neutrality",
+        "Condorcet",
+        "Pareto",
+        "Independence"
+    ],
+    "axioms_check_rule": [],
+    "axiom_opt": {
+        "No_winner": {
+            "weight": 10,
+            "period": "always"
+        },
+        "All_winners": null,
+        "Inadmissible": null,
+        "Resoluteness": null,
+        "Parity": null,
+        "Anonymity": {
+            "weight": 1,
+            "period": "always",
+            "sample": 50
+        },
+        "Neutrality": null,
+        "Condorcet1": {
+            "weight": 2,
+            "period": "always"
+        },
+        "Condorcet2": null,
+        "Pareto1": null,
+        "Pareto2": {
+            "weight": 1,
+            "period": "always"
+        },
+        "Independence": {
+            "weight": 1,
+            "period": "always",
+            "sample": 4
+        }
+    },
+    "comp_rules_axioms": [],
+    "comp_rules_similarity": [],
+    "distance": "KLD",
+    "random_seed": null,
+    "batch_size": 200,
+    "learning_rate": 0.001,
+    "learning_scheduler": 100,
+    "weight_decay": 0,
+    "loss_report_intervals": null,
+    "save_model": false,
+    "load_model_from": null,
+    "learning curve": {
+        "14999": {
+            "loss_on_last_batch": {
+                "loss_nowi": 0.0,
+                "loss_alwi": 0,
+                "loss_inad": 0,
+                "loss_reso": 0,
+                "loss_pari": 0,
+                "loss_anon": 0.0004843434726353735,
+                "loss_neut": 0,
+                "loss_con1": 0.01863105222582817,
+                "loss_con2": 0,
+                "loss_par1": 0,
+                "loss_par2": 0.0014212272362783551,
+                "loss_inde": 0.012159623205661774
+            },
+            "admissability": {
+                "plain": {
+                    "no_winner_at_all": 0.008,
+                    "no_admissible_winner": 0.008,
+                    "all_admissible_winner": 0.17,
+                    "some_inadmissible_winner": 0.0
+                },
+                "neut": {
+                    "no_winner_at_all": 0.02,
+                    "no_admissible_winner": 0.02,
+                    "all_admissible_winner": 0.168,
+                    "some_inadmissible_winner": 0.0
+                },
+                "neut-anon": {
+                    "no_winner_at_all": 0.022,
+                    "no_admissible_winner": 0.022,
+                    "all_admissible_winner": 0.168,
+                    "some_inadmissible_winner": 0.0
+                }
+            },
+            "axiom_satisfaction": {
+                "plain": {
+                    "Anonymity": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.7975,
+                        "absolute_satisfaction": 0.7975,
+                        "percent_applicable": 1.0
+                    },
+                    "Neutrality": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.78,
+                        "absolute_satisfaction": 0.78,
+                        "percent_applicable": 1.0
+                    },
+                    "Condorcet": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.9375,
+                        "absolute_satisfaction": 0.9479166666666666,
+                        "percent_applicable": 0.8333333333333334
+                    },
+                    "Pareto": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 1.0,
+                        "absolute_satisfaction": 1.0,
+                        "percent_applicable": 0.044518642181413465
+                    },
+                    "Independence": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.3425,
+                        "absolute_satisfaction": 0.49616858237547895,
+                        "percent_applicable": 0.7662835249042146
+                    }
+                },
+                "neut": {
+                    "Anonymity": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.87,
+                        "absolute_satisfaction": 0.87,
+                        "percent_applicable": 1.0
+                    },
+                    "Neutrality": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 1.0,
+                        "absolute_satisfaction": 1.0,
+                        "percent_applicable": 1.0
+                    },
+                    "Condorcet": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.97,
+                        "absolute_satisfaction": 0.9757575757575757,
+                        "percent_applicable": 0.8080808080808081
+                    },
+                    "Pareto": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 1.0,
+                        "absolute_satisfaction": 1.0,
+                        "percent_applicable": 0.0496031746031746
+                    },
+                    "Independence": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.36,
+                        "absolute_satisfaction": 0.5151515151515151,
+                        "percent_applicable": 0.7575757575757576
+                    }
+                },
+                "neut-anon": {
+                    "Anonymity": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.9,
+                        "absolute_satisfaction": 0.9,
+                        "percent_applicable": 1.0
+                    },
+                    "Neutrality": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.925,
+                        "absolute_satisfaction": 0.925,
+                        "percent_applicable": 1.0
+                    },
+                    "Condorcet": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.985,
+                        "absolute_satisfaction": 0.9877049180327869,
+                        "percent_applicable": 0.819672131147541
+                    },
+                    "Pareto": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 1.0,
+                        "absolute_satisfaction": 1.0,
+                        "percent_applicable": 0.04984423676012461
+                    },
+                    "Independence": {
+                        "sampling_as_desired": "Yes (400/400)",
+                        "cond_satisfaction": 0.35,
+                        "absolute_satisfaction": 0.49514563106796117,
+                        "percent_applicable": 0.7766990291262136
+                    }
+                }
+            },
+            "similarity_to_other_rules": {
+                "plain": null,
+                "neut": null,
+                "neut-anon": null
+            }
+        }
+    },
+    "admissability": {
+        "plain": {
+            "no_winner_at_all": 0.01,
+            "no_admissible_winner": 0.01,
+            "all_admissible_winner": 0.202,
+            "some_inadmissible_winner": 0.0
+        },
+        "neut": {
+            "no_winner_at_all": 0.026,
+            "no_admissible_winner": 0.026,
+            "all_admissible_winner": 0.2,
+            "some_inadmissible_winner": 0.0
+        },
+        "neut-anon": {
+            "no_winner_at_all": 0.024,
+            "no_admissible_winner": 0.024,
+            "all_admissible_winner": 0.2,
+            "some_inadmissible_winner": 0.0
+        }
+    },
+    "axiom_satisfaction": {
+        "model_plain": {
+            "Anonymity": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.8325,
+                "absolute_satisfaction": 0.8325,
+                "percent_applicable": 1.0
+            },
+            "Neutrality": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.7475,
+                "absolute_satisfaction": 0.7475,
+                "percent_applicable": 1.0
+            },
+            "Condorcet": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.9375,
+                "absolute_satisfaction": 0.9519230769230769,
+                "percent_applicable": 0.7692307692307693
+            },
+            "Pareto": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 1.0,
+                "absolute_satisfaction": 1.0,
+                "percent_applicable": 0.04833252779120348
+            },
+            "Independence": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.3775,
+                "absolute_satisfaction": 0.512720156555773,
+                "percent_applicable": 0.7827788649706457
+            }
+        },
+        "model_neut": {
+            "Anonymity": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.9225,
+                "absolute_satisfaction": 0.9225,
+                "percent_applicable": 1.0
+            },
+            "Neutrality": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 1.0,
+                "absolute_satisfaction": 1.0,
+                "percent_applicable": 1.0
+            },
+            "Condorcet": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.9325,
+                "absolute_satisfaction": 0.9467455621301775,
+                "percent_applicable": 0.7889546351084813
+            },
+            "Pareto": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 1.0,
+                "absolute_satisfaction": 1.0,
+                "percent_applicable": 0.04858496295396575
+            },
+            "Independence": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.41,
+                "absolute_satisfaction": 0.5372549019607843,
+                "percent_applicable": 0.7843137254901961
+            }
+        },
+        "model_neut_anon": {
+            "Anonymity": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.8875,
+                "absolute_satisfaction": 0.8875,
+                "percent_applicable": 1.0
+            },
+            "Neutrality": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.8875,
+                "absolute_satisfaction": 0.8875,
+                "percent_applicable": 1.0
+            },
+            "Condorcet": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.9075,
+                "absolute_satisfaction": 0.9235537190082644,
+                "percent_applicable": 0.8264462809917356
+            },
+            "Pareto": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 1.0,
+                "absolute_satisfaction": 1.0,
+                "percent_applicable": 0.04738213693437574
+            },
+            "Independence": {
+                "sampling_as_desired": "Yes (400/400)",
+                "cond_satisfaction": 0.3275,
+                "absolute_satisfaction": 0.49530956848030017,
+                "percent_applicable": 0.7504690431519699
+            }
+        }
+    },
+    "rule_comparison": {
+        "plain": null,
+        "neut": null,
+        "neut-anon": null
+    },
+    "runtime_in_sec": 150513.7742254734
+}
