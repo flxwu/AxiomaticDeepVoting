@@ -17,8 +17,10 @@ from utils import recast_profile_wo_mult, dict_axioms
 
 
 def train(dataloader, model, loss_fn, optimizer):
-    """The training function for a model"""
+    """The training function for a model. Returns the average batch loss."""
     model.train()
+    total_loss = 0.0
+    num_batches = 0
     for batch, (x, y) in enumerate(dataloader):
         # Compute prediction as logits
         logits = model(x)
@@ -28,6 +30,9 @@ def train(dataloader, model, loss_fn, optimizer):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        total_loss += loss.item()
+        num_batches += 1
+    return total_loss / max(num_batches, 1)
 
 def loss(model, loss_fn, dataloader):
     """Computing the loss of a model on a dataset"""

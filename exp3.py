@@ -27,6 +27,8 @@ import axioms_continuous
 
 from gensim.models import Word2Vec
 
+import wandb_integration
+
 
 
 def experiment3(
@@ -295,6 +297,7 @@ def experiment3(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(results, json_file)
 
+    wandb_integration.init_run("experiment3", results, location)
 
 
 
@@ -524,10 +527,13 @@ def experiment3(
         # Backpropagation
         exp_optimizer.zero_grad()
         loss.backward()
-        exp_optimizer.step()    
+        exp_optimizer.step()
 
         if learning_scheduler is not None:
             scheduler.step()
+
+        if step % 10 == 0:
+            wandb_integration.log({'loss/total': loss.item()}, step=step)
 
         if (loss_report_intervals is not None and
                 step % loss_report_intervals == 0):
@@ -541,12 +547,16 @@ def experiment3(
                 'loss_anon':loss_anon.item(),
                 'loss_neut':loss_neut.item(),
                 'loss_con1':loss_con1.item(),
-                'loss_con2':loss_con2.item(),                
+                'loss_con2':loss_con2.item(),
                 'loss_par1':loss_par1.item(),
                 'loss_par2':loss_par2.item(),
                 'loss_inde':loss_inde.item()
             }
             loss_curve[step] = latest_loss
+            wandb_integration.log(
+                {f'loss/{k}': v for k, v in latest_loss.items()},
+                step=step,
+            )
 
 
         # Interim evaluation on dev set
@@ -781,18 +791,32 @@ def experiment3(
                     'plain':admissibility_summary_plain,
                     'neut':admissibility_summary_neut,
                     'neut-anon':admissibility_summary_neut_anon,
-                },    
+                },
                 'axiom_satisfaction':{
                     'plain':axiom_satisfaction_model_plain,
                     'neut':axiom_satisfaction_model_neut,
                     'neut-anon':axiom_satisfaction_model_neut_anon,
-                },     
+                },
                 'similarity_to_other_rules':{
                     'plain':similarities_plain,
                     'neut':similarities_neut,
                     'neut-anon':similarities_neut_anon,
             }
             }
+            wandb_metrics = {}
+            for variant, ax_dict in [('plain', axiom_satisfaction_model_plain),
+                                     ('neut', axiom_satisfaction_model_neut),
+                                     ('neut_anon', axiom_satisfaction_model_neut_anon)]:
+                if ax_dict is not None:
+                    for ax_name, ax_val in ax_dict.items():
+                        wandb_metrics[f'{variant}/axiom/{ax_name}'] = ax_val.get('cond_satisfaction', 0)
+            for variant, adm in [('plain', admissibility_summary_plain),
+                                 ('neut', admissibility_summary_neut),
+                                 ('neut_anon', admissibility_summary_neut_anon)]:
+                if adm is not None:
+                    for k, v in adm.items():
+                        wandb_metrics[f'{variant}/admissibility/{k}'] = v
+            wandb_integration.log(wandb_metrics, step=step)
 
     # Store evolution of loss
     if (loss_report_intervals is not None):
@@ -1113,5 +1137,8 @@ def experiment3(
 
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
+
+    wandb_integration.log_summary({'runtime_sec': duration})
+    wandb_integration.finish_run()
 
     return location

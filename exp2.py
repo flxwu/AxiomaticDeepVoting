@@ -27,6 +27,7 @@ import train_and_eval
 
 from gensim.models import Word2Vec
 
+import wandb_integration
 
 import pref_voting
 from pref_voting.profiles import Profile
@@ -274,6 +275,7 @@ def experiment2(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(results, json_file)
 
+    wandb_integration.init_run("experiment2", results, location)
 
 
 
@@ -614,12 +616,13 @@ def experiment2(
             )
 
         # Do step in gradient descent
-        train_and_eval.train(
+        train_loss = train_and_eval.train(
             train_dataloader,
             exp_model,
             exp_loss,
             exp_optimizer
         )
+        wandb_integration.log({'train_loss': train_loss}, step=step)
 
         if learning_scheduler is not None:
             scheduler.step()
@@ -631,6 +634,10 @@ def experiment2(
             dev_loss = train_and_eval.loss(exp_model, exp_loss, dev_dataloader)
             learning_curve[f'{step}'] = {'dev_loss' : dev_loss,
                                         'dev_accuracy' : dev_accuracy}
+            wandb_integration.log({
+                'dev_loss': dev_loss,
+                'dev_accuracy': dev_accuracy,
+            }, step=step)
         if step % report_print == 0:
             dev_accuracy = train_and_eval.accuracy(exp_model, dev_dataloader)
             dev_loss = train_and_eval.loss(exp_model, exp_loss, dev_dataloader)
@@ -860,6 +867,12 @@ def experiment2(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
 
+    wandb_integration.log_summary({
+        'test_accuracy': test_accuracy,
+        'runtime_sec': duration,
+        'num_parameters': num_params,
+    })
+    wandb_integration.finish_run()
 
     return location
 
@@ -1070,6 +1083,7 @@ def experiment2_straightforward(
         "save_model": save_model,
     }
 
+    wandb_integration.init_run("experiment2_straightforward", results, location)
 
 
     with open(f"{location}/results.json", "w") as json_file:
@@ -1607,6 +1621,17 @@ def experiment2_straightforward(
                 'dev_axiom_satisfaction_orig' : axiom_satisfaction_orig,
                 'dev_axiom_satisfaction_copy' : axiom_satisfaction_copy,
             }
+            wandb_metrics = {
+                'augmented/dev_loss': dev_loss_orig,
+                'augmented/dev_accuracy': dev_accuracy_orig,
+                'baseline/dev_loss': dev_loss_copy,
+                'baseline/dev_accuracy': dev_accuracy_copy,
+            }
+            for ax_name, ax_val in axiom_satisfaction_orig.items():
+                wandb_metrics[f'augmented/axiom/{ax_name}'] = ax_val.get('cond_satisfaction', 0)
+            for ax_name, ax_val in axiom_satisfaction_copy.items():
+                wandb_metrics[f'baseline/axiom/{ax_name}'] = ax_val.get('cond_satisfaction', 0)
+            wandb_integration.log(wandb_metrics, step=step)
 
 
 
@@ -1664,5 +1689,10 @@ def experiment2_straightforward(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
 
+    wandb_integration.log_summary({
+        'runtime_sec': duration,
+        'num_parameters': num_params,
+    })
+    wandb_integration.finish_run()
 
     return location

@@ -26,6 +26,8 @@ import train_and_eval
 
 from gensim.models import Word2Vec
 
+import wandb_integration
+
 
 
 
@@ -278,6 +280,7 @@ def experiment1(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(results, json_file)
 
+    wandb_integration.init_run("experiment1", results, location)
 
 
     # GENERATING DATA
@@ -287,7 +290,7 @@ def experiment1(
 
     if architecture == 'WEC':
         # First gather architecture parameters
-        we_corpus = architecture_parameters['we_corpus_size'] 
+        we_corpus = architecture_parameters['we_corpus_size']
         we_size = architecture_parameters['we_size']
         we_window = architecture_parameters['we_window']
         we_algorithm = architecture_parameters['we_algorithm']
@@ -622,12 +625,13 @@ def experiment1(
             )
 
         # Do step in gradient descent
-        train_and_eval.train(
+        train_loss = train_and_eval.train(
             train_dataloader,
             exp_model,
             exp_loss,
             exp_optimizer
         )
+        wandb_integration.log({'train_loss': train_loss}, step=step)
 
         if learning_scheduler is not None:
             scheduler.step()
@@ -637,12 +641,16 @@ def experiment1(
             dev_loss = train_and_eval.loss(exp_model, exp_loss, dev_dataloader)
             learning_curve[f'{step}'] = {'dev_loss' : dev_loss,
                                         'dev_accuracy' : dev_accuracy}
+            wandb_integration.log({
+                'dev_loss': dev_loss,
+                'dev_accuracy': dev_accuracy,
+            }, step=step)
         if step % report_print == 0:
             dev_accuracy = train_and_eval.accuracy(exp_model, dev_dataloader)
             dev_loss = train_and_eval.loss(exp_model, exp_loss, dev_dataloader)
-            if learning_scheduler is not None:            
+            if learning_scheduler is not None:
                 current_learning_rate = scheduler.get_last_lr()[0]
-            else: 
+            else:
                 current_learning_rate = exp_optimizer.defaults['lr']
             print(f'Step {step}: dev-loss {round(dev_loss,5)}, dev-accuracy {dev_accuracy}, lr={round(current_learning_rate,5)}')
 
@@ -850,6 +858,12 @@ def experiment1(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
 
+    wandb_integration.log_summary({
+        'test_accuracy': test_accuracy,
+        'runtime_sec': duration,
+        'num_parameters': num_params,
+    })
+    wandb_integration.finish_run()
 
     return location
 
@@ -1033,6 +1047,8 @@ def experiment1_fixed_data(
         "save_training_data": save_training_data,
         "save_model": save_model,
     }
+
+    wandb_integration.init_run("experiment1_fixed", results, location)
 
 
     with open(f"{location}/results.json", "w") as json_file:
@@ -1350,10 +1366,16 @@ def experiment1_fixed_data(
             train_loss = train_and_eval.loss(exp_model, exp_loss, train_dataloader)
             dev_accuracy = train_and_eval.accuracy(exp_model, dev_dataloader)
             dev_loss = train_and_eval.loss(exp_model, exp_loss, dev_dataloader)
-            learning_curve[f'{epoch}'] = {'train_loss' : train_loss, 
+            learning_curve[f'{epoch}'] = {'train_loss' : train_loss,
                                         'train_accuracy' : train_accuracy,
                                         'dev_loss' : dev_loss,
                                         'dev_accuracy' : dev_accuracy}
+            wandb_integration.log({
+                f'{architecture}/train_loss': train_loss,
+                f'{architecture}/train_accuracy': train_accuracy,
+                f'{architecture}/dev_loss': dev_loss,
+                f'{architecture}/dev_accuracy': dev_accuracy,
+            }, step=epoch)
             if epoch % 5 == 0:
                 print(f'Epoch {epoch}: train-loss {round(train_loss,5)}, train-accu {train_accuracy}, dev-loss {round(dev_loss,5)}, dev-accuracy {dev_accuracy}')
 
@@ -1506,7 +1528,7 @@ def experiment1_fixed_data(
 
             with open(f"{location}/results.json", "w") as json_file:
                 json.dump(data, json_file)
-    
+
 
 
 
@@ -1522,6 +1544,9 @@ def experiment1_fixed_data(
 
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
+
+    wandb_integration.log_summary({'runtime_sec': duration})
+    wandb_integration.finish_run()
 
     return location
 
@@ -1639,6 +1664,7 @@ def experiment1_cross_validation(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(results, json_file)
 
+    wandb_integration.init_run("experiment1_crossval", results, location)
 
 
     # GENERATING DATA
@@ -1892,6 +1918,9 @@ def experiment1_cross_validation(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
 
+    wandb_integration.log_summary({'runtime_sec': duration})
+    wandb_integration.finish_run()
+
     return location
 
 
@@ -2089,6 +2118,7 @@ def experiment1_accu_and_axioms_along_training(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(results, json_file)
 
+    wandb_integration.init_run("experiment1_along_training", results, location)
 
 
     # GENERATING DATA
@@ -2440,6 +2470,15 @@ def experiment1_accu_and_axioms_along_training(
                 'dev_admissibility' : admissibility_summary,
                 'dev_axiom_satisfaction' : axiom_satisfaction_model,
             }
+            wandb_metrics = {
+                'dev_loss': dev_loss,
+                'dev_accuracy': dev_accuracy,
+            }
+            for ax_name, ax_val in axiom_satisfaction_model.items():
+                wandb_metrics[f'axiom/{ax_name}'] = ax_val.get('cond_satisfaction', 0)
+            for k, v in admissibility_summary.items():
+                wandb_metrics[f'admissibility/{k}'] = v
+            wandb_integration.log(wandb_metrics, step=step)
 
 
     num_params = summary(exp_model).total_params
@@ -2481,5 +2520,7 @@ def experiment1_accu_and_axioms_along_training(
     with open(f"{location}/results.json", "w") as json_file:
         json.dump(data, json_file)
 
+    wandb_integration.log_summary({'runtime_sec': duration, 'num_parameters': num_params})
+    wandb_integration.finish_run()
 
     return location
