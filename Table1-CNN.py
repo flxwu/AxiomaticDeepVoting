@@ -64,6 +64,7 @@ location_cnn = exp3.experiment3(
     election_sampling = ELECTION_SAMPLING,
     num_gradient_steps = NUM_GRADIENT_STEPS,
     report_intervals = NUM_GRADIENT_STEPS,
+    loss_report_intervals = LOSS_REPORT_INTERVALS,
     eval_dataset_size = EVAL_DATASET_SIZE,
     model_to_rule = {
         'plain': True,
