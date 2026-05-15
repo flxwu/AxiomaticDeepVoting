@@ -1,0 +1,50 @@
+[project]
+name = "axiomaticdeepvoting"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.10.*"
+dependencies = [
+    "torch==2.5.1",
+    "numpy==1.26.4",
+    "scipy==1.12.0",
+    "pandas==2.3.3",
+    "matplotlib==3.10.8",
+    "gensim==4.3.2",
+    "pref-voting==0.9.3",
+    "nashpy==0.0.40",
+    "networkx==3.2.1",
+    "numba==0.58.1",
+    "llvmlite==0.41.1",
+    "ortools==9.9.3963",
+    "tabulate==0.9.0",
+    "torchinfo==1.8.0",
+    "tqdm==4.67.1",
+    "wandb",
+    "seaborn==0.13.2",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab",
+    "ipykernel",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+    "axioms",
+    "axioms_continuous",
+    "exp1",
+    "exp2",
+    "exp3",
+    "generate_data",
+    "models",
+    "plot_and_visual",
+    "train_and_eval",
+    "utils",
+    "wandb_integration",
+]

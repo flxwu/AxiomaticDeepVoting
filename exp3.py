@@ -2,6 +2,7 @@
 The implementation of experiment 3
 """
 import os
+from pathlib import Path
 import time
 from datetime import datetime
 import numpy as np
@@ -48,6 +49,7 @@ def experiment3(
         axiom_opt,
         comp_rules_axioms,
         comp_rules_similarity,
+        output_dir,
         distance='L2',
         random_seed=None,
         batch_size=100,
@@ -260,8 +262,8 @@ def experiment3(
     # Set up saving of results
     prob_model = election_sampling['probmodel']
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    location = f"./results/exp3/{architecture}/exp3_{current_time}_{prob_model}"
-    os.mkdir(location)
+    location = str(Path(output_dir)/f"exp3/{architecture}/exp3_{current_time}_{prob_model}")
+    os.makedirs(location, exist_ok=True)
     print(f'Saving location: {location}')
 
 

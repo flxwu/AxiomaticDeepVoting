@@ -21,8 +21,6 @@ from torch.utils.data import TensorDataset, DataLoader
 from tqdm import tqdm
 from gensim.models import Word2Vec
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import utils
 import generate_data
 import models

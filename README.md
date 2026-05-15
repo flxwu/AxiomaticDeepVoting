@@ -13,14 +13,12 @@ This repository contains the code for the paper
 
 ## Setup
 
-Run `conda env create -f environment.portable.yml`
-To create the folder (with subfolders) to store the results when running the experiments, execute the following command (on linux)
+This project uses [uv](https://docs.astral.sh/uv/). Run
 
 ```
+uv sync && uv pip install -e .
 mkdir -p results/{exp1/{CNN,Evol,Fixed,MLP,MLP_large,MLP_small,plots,WEC},exp2/{CNN,MLP,plots,WEC},exp3/{CNN,MLP,plots,WEC}}
 ```
-
-or create this folder structure manually in the directory in which you store the code.
 
 The files `exp1.py`, `exp2.py`, and `exp3.py` contain the functions to run experiments 1, 2, and 3 of the paper, respectively. The remaining files contain additional code for those experiments. 
 
