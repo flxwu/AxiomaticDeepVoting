@@ -99,6 +99,7 @@ location_mlp = exp3.experiment3(
     distance = DISTANCE,
     batch_size = BATCH_SIZE,
     learning_scheduler = LEARNING_SCHEDULER,
+    output_dir="/Users/felixwu/code/AxiomaticDeepVoting/results/",
 )
 print(f'MLP results: {location_mlp}')
 
@@ -135,6 +136,7 @@ location_cnn = exp3.experiment3(
     distance = DISTANCE,
     batch_size = BATCH_SIZE,
     learning_scheduler = LEARNING_SCHEDULER,
+    output_dir="/Users/felixwu/code/AxiomaticDeepVoting/results/",
 )
 print(f'CNN results: {location_cnn}')
 
@@ -172,6 +174,7 @@ location_wec = exp3.experiment3(
     distance = DISTANCE,
     batch_size = BATCH_SIZE,
     learning_scheduler = LEARNING_SCHEDULER,
+    output_dir="/Users/felixwu/code/AxiomaticDeepVoting/results/",
 )
 print(f'WEC results: {location_wec}')
 
@@ -214,6 +217,7 @@ location_rules = exp3.experiment3(
     },
     comp_rules_axioms = list(utils.dict_rules_all_fast.keys()),
     comp_rules_similarity = [],
+    output_dir="/Users/felixwu/code/AxiomaticDeepVoting/results/",
 )
 print(f'Rule baseline results: {location_rules}')
 

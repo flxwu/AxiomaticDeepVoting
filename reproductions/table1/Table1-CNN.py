@@ -87,5 +87,6 @@ location_cnn = exp3.experiment3(
     batch_size = BATCH_SIZE,
     learning_scheduler = LEARNING_SCHEDULER,
     save_model = True,
+    output_dir="/Users/felixwu/code/AxiomaticDeepVoting/results/",
 )
 print(f'CNN results: {location_cnn}')
